@@ -4,23 +4,22 @@ app = "full-stack-open-pokedex-empty-firefly-6163"
   strategy = "canary"
 
 [env]
-  PORT = "3000"
+  PORT = "5001"
 
 [processes]
   app = "node app.js"
 
 [http_service]
-  internal_port = 3000
+  internal_port = 5001
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
   processes = ["app"]
 
-  [[http_service.http_checks]]
+  [[http_service.checks]]
     grace_period = "1m"
     interval = "30s"
     method = "GET"
     timeout = "5s"
     path = "/health"
-    protocol = "http"
